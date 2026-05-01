@@ -342,7 +342,7 @@ function Dashboard(){
       {/*  ZDJĘCIE */}
       {r.photoUrl && (
         <img
-          src={`http://localhost:5231${r.photoUrl}`}
+          src={`https://report-service-new.orangewave-a9df084a.polandcentral.azurecontainerapps.io${r.photoUrl}`}
           style={{
             width:"120px",
             height:"90px",

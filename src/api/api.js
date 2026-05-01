@@ -1,7 +1,6 @@
 //adresy backendu - mikroserwisy
-const AUTH_API = "http://localhost:5041/api/auth" // autoryzacja
-const REPORT_API = "http://localhost:5231/api" // zgloszenia + pogoda
-
+const AUTH_API = "https://auth-service-new.orangewave-a9df084a.polandcentral.azurecontainerapps.io/api/auth"
+const REPORT_API = "https://report-service-new.orangewave-a9df084a.polandcentral.azurecontainerapps.io/api"
 //  LOGIN
 export async function login(email, password) {
 
@@ -116,7 +115,7 @@ export async function getMe(){
   const token = sessionStorage.getItem("token")
   //wysyłamy zapytanie do backendu o dane aktualnego użytkownika
   if (!token) throw new Error("No token")//brak logowania
-  const response = await fetch("http://localhost:5041/api/auth/me",{
+   const response = await fetch(`${AUTH_API}/me`,{
     //dodajemy nagłówek Authorization z tokenem
     //backend na tej podstawie wie kto wysłał zapytanie
     headers:{
@@ -136,7 +135,7 @@ export async function getAllReports(){
   if (!token) throw new Error("No token")
 
   // wysyłamy zapytanie do backendu po wszystkie zgłoszenia (dla Clerk/Admin)
-  const res = await fetch("http://localhost:5231/api/reports", {
+  const res = await fetch(`${REPORT_API}/reports`, {
     //dodajemy token JWT w nagłówku Authorization
     headers:{
       "Authorization": "Bearer " + sessionStorage.getItem("token")
@@ -151,7 +150,7 @@ export async function getAllReports(){
 //ZMIANA STATUSU
 export async function updateStatus(id, status){
   // wysyłamy zapytanie do backendu, aby zmienić status zgłoszenia
-  await fetch(`http://localhost:5231/api/reports/${id}/status`, {
+  await fetch(`${REPORT_API}/reports/${id}/status`, {
     method: "PUT",//metoda PUT = aktualizacja danych
     headers:{
       "Content-Type": "application/json",//wysyłamy dane jako JSON
@@ -164,7 +163,7 @@ export async function updateStatus(id, status){
 //USUWANIE ZGLOSZENIA
 export async function deleteReport(id){
   //wysyłamy zapytanie do backendu o usunięcie zgłoszenia o danym id
-  await fetch(`http://localhost:5231/api/reports/${id}`, {
+  await fetch(`${REPORT_API}/reports/${id}`, {
     method: "DELETE",//metoda DELETE = usuwanie zasobu
     headers:{
       //dodajemy token JWT do autoryzacji
@@ -175,7 +174,7 @@ export async function deleteReport(id){
 //KOMENATARZE
 export async function getComments(reportId){
   //wysyłamy zapytanie do backendu o komentarze dla danego zgłoszenia
-  const res = await fetch(`http://localhost:5231/api/reports/${reportId}/comments`, {
+  const res = await fetch(`${REPORT_API}/reports/${reportId}/comments`, {
     //dodajemy token JWT do autoryzacji
     headers: {
       "Authorization": "Bearer " + sessionStorage.getItem("token")
@@ -187,7 +186,7 @@ export async function getComments(reportId){
 //DODAWANIE KOMENATARZY
 export async function addComment(reportId, content){
   //wysyłamy nowy komentarz do backendu
-  const res = await fetch(`http://localhost:5231/api/reports/${reportId}/comments`, {
+  const res = await fetch(`${REPORT_API}/reports/${reportId}/comments`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",//wysyłamy JSON
@@ -203,7 +202,7 @@ export async function addComment(reportId, content){
 //REJESTRACJA
 export async function register(email, password){
   // wysyłamy dane rejestracji do backendu
-  const res = await fetch("http://localhost:5041/api/auth/register", {
+  const res = await fetch(`${AUTH_API}/register`, {
     method: "POST",//tworzenie nowego użytkownika
     headers: {
       "Content-Type": "application/json"//wysyłamy dane w formacie JSON
@@ -229,7 +228,7 @@ export async function register(email, password){
 export async function getWeather() {
   // wysyłamy zapytanie do backendu o dane pogodowe
   //backend łączy się z zewnętrznym API (np. OpenWeather)
-  const res = await fetch("http://localhost:5231/api/weather?city=Krakow")
+  const res = await fetch(`${REPORT_API}/weather?city=Krakow`)
   // sprawdzamy czy odpowiedź jest poprawna (status 200)
   if (!res.ok) throw new Error("Weather error")
   //zamieniamy JSON na obiekt JS i zwracamy dane pogodowe
@@ -237,7 +236,7 @@ export async function getWeather() {
 }
 
 export async function getUsers(){
-  const res = await fetch("http://localhost:5041/api/admin/users", {
+  const res = await fetch(`${AUTH_API}/admin/users`, {
     headers:{
       Authorization: "Bearer " + sessionStorage.getItem("token")
     }
@@ -247,7 +246,7 @@ export async function getUsers(){
 }
 
 export async function changeRole(id, role){
-  await fetch(`http://localhost:5041/api/admin/users/${id}/role`, {
+  await fetch(`${AUTH_API}/admin/users/${id}/role`, {
     method: "PUT",
     headers:{
       "Content-Type": "application/json",
