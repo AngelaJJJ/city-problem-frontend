@@ -37,8 +37,9 @@ function Login({ goToRegister }) {
 
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center"
+        justifyContent: "flex-start", 
+        alignItems: "center",
+        paddingTop: "60px"
       }}
     >
 
