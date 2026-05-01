@@ -56,7 +56,8 @@ function Login({ goToRegister }) {
         flex: 1,
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+         marginTop: "-80px" 
       }}>
 
         {/* 🔥 TU MUSI BYĆ login-box */}
