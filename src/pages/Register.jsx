@@ -46,7 +46,7 @@ function Register({ goToLogin }){
           placeholder="Email"
           value={email}
           onChange={e=>setEmail(e.target.value)}
-          style={{marginBottom:"10px", padding:"10px", width:"250px"}}
+          style={{marginBottom:"10px", padding:"10px", width:"250px",backgroundColor:"white", color:"black",border:"1px solid #ccc", borderRadius:"6px"}}
         />
 
         <input
@@ -54,7 +54,7 @@ function Register({ goToLogin }){
           placeholder="Hasło"
           value={password}
           onChange={e=>setPassword(e.target.value)}
-          style={{marginBottom:"10px", padding:"10px", width:"250px"}}
+          style={{marginBottom:"10px", padding:"10px", width:"250px", backgroundColor:"white",color:"black", border:"1px solid #ccc",borderRadius:"6px"}}
         />
 
         <button type="submit">

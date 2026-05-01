@@ -237,7 +237,12 @@ function Dashboard(){
           width:"100%",
           padding:"12px",
           marginBottom:"5px",
-          boxSizing:"border-box"
+          boxSizing:"border-box",
+          backgroundColor:"white",
+          color:"black",
+          border:"1px solid #ccc",
+          borderRadius:"6px"
+          
         }}
       />
       <div style={{
@@ -263,7 +268,9 @@ function Dashboard(){
           marginBottom:"15px",
           borderRadius:"6px",
           border:"1px solid #ccc",
-          fontSize:"15px"
+          fontSize:"15px",
+          backgroundColor:"white",
+          color:"black"
         }}
       />
       <div style={{
@@ -291,7 +298,11 @@ function Dashboard(){
           padding:"12px",
           boxSizing:"border-box",
           resize:"none",
-          marginBottom:"5px"
+          marginBottom:"5px",
+          backgroundColor:"white",
+          color:"black",
+          border:"1px solid #ccc",
+          borderRadius:"6px"
         }}
       />
 
