@@ -1,5 +1,6 @@
 //adresy backendu - mikroserwisy
 const AUTH_API = "https://auth-service-new.orangewave-a9df084a.polandcentral.azurecontainerapps.io/api/auth"
+const ADMIN_API = "https://auth-service-new.orangewave-a9df084a.polandcentral.azurecontainerapps.io/api/admin"
 const REPORT_API = "https://report-service-new.orangewave-a9df084a.polandcentral.azurecontainerapps.io/api"
 //  LOGIN
 export async function login(email, password) {
@@ -236,7 +237,7 @@ export async function getWeather() {
 }
 
 export async function getUsers(){
-  const res = await fetch(`${AUTH_API}/admin/users`, {
+  const res = await fetch(`${ADMIN_API}/users`, {
     headers:{
       Authorization: "Bearer " + sessionStorage.getItem("token")
     }
@@ -246,7 +247,7 @@ export async function getUsers(){
 }
 
 export async function changeRole(id, role){
-  await fetch(`${AUTH_API}/admin/users/${id}/role`, {
+  await fetch(`${ADMIN_API}/users/${id}/role`, {
     method: "PUT",
     headers:{
       "Content-Type": "application/json",
