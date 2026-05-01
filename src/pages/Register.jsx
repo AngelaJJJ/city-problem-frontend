@@ -24,7 +24,7 @@ function Register({ goToLogin }){
      <div
     className="register-page"
     style={{
-      backgroundImage: `url(/src/assets/background.png)`,
+      backgroundImage: `url(/background.png)`,
       backgroundSize: "cover",
       backgroundPosition: "center",
       height: "100vh"
