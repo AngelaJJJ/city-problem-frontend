@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { getMyReports, createReport, uploadPhoto, getMe, getAllReports, updateStatus, deleteReport,addComment, getComments, getWeather, changeRole, getUsers } from "../api/api"
 
-
+const API_URL = "https://report-service-new.orangewave-a9df084a.polandcentral.azurecontainerapps.io"
 function Dashboard(){
   //dopasowywanie ikon do pogody
   function getWeatherIcon(weatherMain) {
@@ -350,7 +350,7 @@ function Dashboard(){
             cursor:"pointer",
             marginTop:"10px"
           }}
-          onClick={() => setSelectedImage(`http://localhost:5231${r.photoUrl}`)}
+          onClick={() => setSelectedImage(`${API_URL}${r.photoUrl}`)}
         />
       )}
 
@@ -426,7 +426,7 @@ function Dashboard(){
       {/*  ZDJĘCIE */}
       {r.photoUrl && (
         <img
-          src={`http://localhost:5231${r.photoUrl}`}
+          src={`${API_URL}${r.photoUrl}`}
           style={{
             width:"120px",
             height:"90px",
@@ -434,7 +434,7 @@ function Dashboard(){
             cursor:"pointer",
             marginTop:"10px"
           }}
-          onClick={() => setSelectedImage(`http://localhost:5231${r.photoUrl}`)}
+          onClick={() => setSelectedImage(`${API_URL}${r.photoUrl}`)}
         />
       )}
 
@@ -581,14 +581,14 @@ function Dashboard(){
 
           {r.photoUrl && (
             <img
-              src={`http://localhost:5231${r.photoUrl}`}
+              src={`${API_URL}${r.photoUrl}`}
               style={{
                 width:"120px",
                 height:"90px",
                 objectFit:"cover",
                 cursor:"pointer"
               }}
-              onClick={() => setSelectedImage(`http://localhost:5231${r.photoUrl}`)}
+              onClick={() => setSelectedImage(`${API_URL}${r.photoUrl}`)}
             />
           )}
 
