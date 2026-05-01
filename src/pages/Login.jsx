@@ -30,10 +30,15 @@ function Login({ goToRegister }) {
     <div
       className="login-page"
       style={{
-        backgroundImage: `url(/src/assets/background.png)`,
+        backgroundImage: `url(/background.png)`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "100vh"
+        minHeight: "100vh",
+
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center"
       }}
     >
 
@@ -46,47 +51,37 @@ function Login({ goToRegister }) {
         takich jak dziury w drogach, uszkodzone oświetlenie czy nielegalne wysypiska.
       </p>
      
-      <div className="login-box">
+       {/* 🔥 WRAPPER */}
+      <div style={{
+        flex: 1,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+      }}>
 
-        <h2>Logowanie</h2>
+        {/* 🔥 TU MUSI BYĆ login-box */}
+        <div className="login-box">
 
-        <form onSubmit={handleLogin}>
+          <h2>Logowanie</h2>
 
-          <input
-            type="email"//przeglądarka sprawdza format email
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}// aktualizacja stanu
-            required
-          />
+          <form onSubmit={handleLogin}>
+            <input type="email" placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)} required />
+            <input type="password" placeholder="Hasło" value={password} onChange={(e)=>setPassword(e.target.value)} required />
+            <button type="submit">Zaloguj</button>
+          </form>
 
-          <input
-            type="password"
-            placeholder="Hasło"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <p style={{marginTop:"10px"}}>
+            Nie masz konta?
+            <span
+              onClick={goToRegister}
+              style={{color:"blue", cursor:"pointer", marginLeft:"5px"}}
+            >
+              Zarejestruj się
+            </span>
+          </p>
 
-          <button type="submit">
-            Zaloguj
-          </button>
+        </div>
 
-        </form>
-        
-        <p style={{marginTop:"10px"}}>
-        Nie masz konta?
-        <span
-          onClick={goToRegister}//zmiana widoku na rejestrację
-          style={{
-            color:"blue",
-            cursor:"pointer",
-            marginLeft:"5px"
-          }}
-        >
-          Zarejestruj się
-        </span>
-      </p>
       </div>
     </div>
   );
